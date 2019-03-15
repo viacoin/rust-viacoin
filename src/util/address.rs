@@ -212,7 +212,7 @@ impl Display for Address {
             Payload::PubkeyHash(ref hash) => {
                 let mut prefixed = [0; 21];
                 prefixed[0] = match self.network {
-                    Network::Bitcoin => 0,
+                    Network::Bitcoin => 71,
                     Network::Testnet | Network::Regtest => 111,
                 };
                 prefixed[1..].copy_from_slice(&hash[..]);
@@ -271,7 +271,7 @@ impl FromStr for Address {
         }
 
         let (network, payload) = match data[0] {
-            0 => (
+            71 => (
                 Network::Bitcoin,
                 Payload::PubkeyHash(hash160::Hash::from_slice(&data[1..]).unwrap())
             ),
@@ -385,15 +385,15 @@ mod tests {
         };
 
         assert_eq!(addr.script_pubkey(), hex_script!("76a914162c5ea71c0b23f5b9022ef047c4a86470a5b07088ac"));
-        assert_eq!(&addr.to_string(), "132F25rTsvBdp9JzLLBHP5mvGY66i1xdiM");
-        assert_eq!(Address::from_str("132F25rTsvBdp9JzLLBHP5mvGY66i1xdiM").unwrap(), addr);
+        assert_eq!(&addr.to_string(), "Vc24vo1vHj5qsvD957puoz6mxMP5BkqVo3");
+        assert_eq!(Address::from_str("Vc24vo1vHj5qsvD957puoz6mxMP5BkqVo3").unwrap(), addr);
     }
 
     #[test]
     fn test_p2pkh_from_key() {
         let key = hex_key!("048d5141948c1702e8c95f438815794b87f706a8d4cd2bffad1dc1570971032c9b6042a0431ded2478b5c9cf2d81c124a5e57347a3c63ef0e7716cf54d613ba183");
         let addr = Address::p2pkh(&key, Bitcoin);
-        assert_eq!(&addr.to_string(), "1QJVDzdqb1VpbDK7uDeyVXy9mR27CJiyhY");
+        assert_eq!(&addr.to_string(), "VyJK8hoHzpQ2ezDGe1JbvSJ1TEK5f6EXKr");
 
         let key = hex_key!(&"03df154ebfcf29d29cc10d5c2565018bce2d9edbab267c31d2caf44a63056cf99f");
         let addr = Address::p2pkh(&key, Testnet);
