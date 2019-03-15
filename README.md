@@ -1,22 +1,22 @@
 [![Status](https://travis-ci.org/rust-bitcoin/rust-bitcoin.png?branch=master)](https://travis-ci.org/rust-bitcoin/rust-bitcoin)
 
-# Rust Bitcoin Library
+# Rust Viacoin Library
 
 Library with support for de/serialization, parsing and executing on data
-structures and network messages related to Bitcoin and other blockchain-based
+structures and network messages related to Viacoin and other blockchain-based
 currencies.
 
 [Documentation](https://docs.rs/bitcoin/)
 
 Supports (or should support)
 
-* De/serialization of Bitcoin protocol network messages
+* De/serialization of Viacoin protocol network messages
 * De/serialization of blocks and transactions
 * Script de/serialization
 * Private keys and address creation, de/serialization and validation (including full BIP32 support)
 * Pay-to-contract support as in Appendix A of the [Blockstream sidechains whitepaper](https://www.blockstream.com/sidechains.pdf)
 
-For JSONRPC interaction with Bitcoin Core, it is recommended to use [rust-jsonrpc](https://github.com/apoelstra/rust-jsonrpc)
+For JSONRPC interaction with Viacoin Core, it is recommended to use [rust-jsonrpc](https://github.com/apoelstra/rust-jsonrpc)
 which uses the underlying [strason library](https://github.com/apoelstra/strason)
 which parses decimal numbers as strings, preventing precision errors.
 
@@ -27,8 +27,8 @@ which parses decimal numbers as strings, preventing precision errors.
 This library **must not** be used for consensus code (i.e. fully validating
 blockchain data). It technically supports doing this, but doing so is very
 ill-advised because there are many deviations, known and unknown, between
-this library and the Bitcoin Core reference implementation. In a consensus
-based cryptocurrency such as Bitcoin it is critical that all parties are
+this library and the Viacoin Core reference implementation. In a consensus
+based cryptocurrency such as Viacoin it is critical that all parties are
 using the same rules to validate data, and this library is simply unable
 to implement the same rules as Core.
 
@@ -42,23 +42,18 @@ Currently the [documentation](https://www.wpsoftware.net/rustdoc/bitcoin/)
 is very sparse. Patches to add usage examples and to expand on existing
 docs would be extremely appreciated.
 
-# Contributing
-Contributions are generally welcome. If you intend to make larger changes please discuss them in an issue before PRing 
-them to avoid duplicate work and architectural mismatches. If you have any questions or ideas you want to discuss
-please join us in [#rust-bitcoin](http://webchat.freenode.net/?channels=%23rust-bitcoin) on freenode.
-
 ## Installing Rust
 Rust can be installed using your package manager of choice or [rustup.rs](https://rustup.rs). The former way is
 considered more secure since it typically doesn't involve trust in the CA system. But you should be aware that the version
-of Rust shipped by your distribution might be out of date. Generally this isn't a problem for `rust-bitcoin` since
+of Rust shipped by your distribution might be out of date. Generally this isn't a problem for `rust-viacoin` since
 we support much older versions (>=1.22) than the current stable one.
 
 ## Building
 The library can be built and tested using [`cargo`](https://github.com/rust-lang/cargo/):
 
 ```
-git clone git@github.com:rust-bitcoin/rust-bitcoin.git
-cd rust-bitcoin
+git clone git@github.com:viacoin/rust-viacoin.git
+cd rust-viacoin
 cargo build
 ```
 
@@ -77,7 +72,7 @@ a longer time of inactivity. If your PR isn't ready for review yet please mark i
 
 ## Policy on Altcoins/Altchains
 
-Patches which add support for non-Bitcoin cryptocurrencies by adding constants
+Patches which add support for non-Viacoin cryptocurrencies by adding constants
 to existing enums (e.g. to set the network message magic-byte sequence) are
 welcome. Anything more involved will be considered on a case-by-case basis,
 as the altcoin landscape includes projects which [frequently appear and
