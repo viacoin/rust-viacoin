@@ -3,7 +3,7 @@
 # Rust Viacoin Library
 
 Library with support for de/serialization, parsing and executing on data
-structures and network messages related to Viacoin and other blockchain-based
+structures and network messages related to Viacoin and other aux blockchain-based
 currencies.
 
 [Documentation](https://docs.rs/bitcoin/)
