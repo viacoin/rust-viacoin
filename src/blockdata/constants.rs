@@ -24,10 +24,11 @@ use std::default::Default;
 use blockdata::opcodes;
 use blockdata::script;
 use blockdata::transaction::{OutPoint, Transaction, TxOut, TxIn};
-use blockdata::block::{Block, BlockHeader};
+use blockdata::block::{BaseBlock, BlockHeader};
 use network::constants::Network;
 use util::misc::hex_bytes;
 use util::uint::Uint256;
+use blockdata::block::BaseHeader;
 
 /// The maximum allowable sequence number
 pub static MAX_SEQUENCE: u32 = 0xFFFFFFFF;
@@ -89,12 +90,12 @@ fn bitcoin_genesis_tx() -> Transaction {
 }
 
 /// Constructs and returns the genesis block
-pub fn genesis_block(network: Network) -> Block {
+pub fn genesis_block(network: Network) -> BaseBlock {
     match network {
         Network::Bitcoin => {
             let txdata = vec![bitcoin_genesis_tx()];
-            Block {
-                header: BlockHeader {
+            BaseBlock {
+                header: BaseHeader {
                     version: 1,
                     prev_blockhash: Default::default(),
                     merkle_root: txdata[0].txid(),
@@ -107,8 +108,8 @@ pub fn genesis_block(network: Network) -> Block {
         }
         Network::Testnet => {
             let txdata = vec![bitcoin_genesis_tx()];
-            Block {
-                header: BlockHeader {
+            BaseBlock {
+                header: BaseHeader {
                     version: 1,
                     prev_blockhash: Default::default(),
                     merkle_root: txdata[0].txid(),
@@ -121,8 +122,8 @@ pub fn genesis_block(network: Network) -> Block {
         }
         Network::Regtest => {
             let txdata = vec![bitcoin_genesis_tx()];
-            Block {
-                header: BlockHeader {
+            BaseBlock {
+                header: BaseHeader {
                     version: 1,
                     prev_blockhash: Default::default(),
                     merkle_root: txdata[0].txid(),
