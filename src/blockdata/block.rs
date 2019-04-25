@@ -336,13 +336,13 @@ mod tests {
 //        assert_eq!(serialize(&real_decode), segwit_block);
 //    }
 
-//    #[test]
-//    fn compact_roundrtip_test() {
-//        let some_header = hex_decode("010000004ddccd549d28f385ab457e98d1b11ce80bfea2c5ab93015ade4973e400000000bf4473e53794beae34e64fccc471dace6ae544180816f89591894e0f417a914cd74d6e49ffff001d323b3a7b").unwrap();
-//
-//        let header: BlockHeader = deserialize(&some_header).expect("Can't deserialize correct block header");
-//
-//        assert_eq!(header.bits, BlockHeader::compact_target_from_u256(&header.target()));
-//    }
+   #[test]
+   fn compact_roundrtip_test() {
+       let some_header = hex_decode("01000000000000000000000000000000000000000000000000000000000000000000000000522753002939c78659b4fdc6ed56c6b6aacdc7586facf2f6ada2012ed31703e61cc153ffff011ea1473d00").unwrap();
+
+       let header: BlockHeader = deserialize(&some_header).expect("Can't deserialize correct block header");
+
+       assert_eq!(header.bits, BlockHeader::compact_target_from_u256(&header.target()));
+   }
 }
 
